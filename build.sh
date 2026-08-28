@@ -17,7 +17,7 @@ fi
 
 if [ ! -d "fribidi" ]
 then
-  git clone https://github.com/fribidi/fribidi.git --depth=1 -b v1.0.13
+  git clone https://github.com/fribidi/fribidi.git --depth=1 -b v1.0.16
 fi
 
 API_LEVEL=21
@@ -62,11 +62,7 @@ c = '$CC'
 cpp = '$CXX'
 ar = '$AR'
 strip = '$STRIP'
-pkgconfig = 'pkg-config'
-
-[properties]
-c_link_args = ['-Wl,-z,max-page-size=16384']
-cpp_link_args = ['-Wl,-z,max-page-size=16384']
+pkg-config = 'pkg-config'
 
 [host_machine]
 system = 'android'
@@ -80,7 +76,7 @@ EOF
     echo "Building fribidi for ${ABI}..."
     cd fribidi
     rm -rf "build-${ABI}"
-    meson setup "build-${ABI}" --cross-file "../meson-cross-${ABI}.txt" --prefix="${PREFIX}" --libdir="lib/${ABI}" --default-library=static -Dtests=false -Ddocs=false
+    meson setup "build-${ABI}" --cross-file "../meson-cross-${ABI}.txt" --prefix="${PREFIX}" --libdir="lib/${ABI}" --default-library=static -Dtests=false -Ddocs=false -Dbin=false
     ninja -C "build-${ABI}" install
     cd ..
   else
