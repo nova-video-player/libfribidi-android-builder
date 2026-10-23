@@ -17,7 +17,7 @@ fi
 
 if [ ! -d "fribidi" ]
 then
-  git clone https://github.com/fribidi/fribidi.git --depth=1 -b v1.0.16
+  git clone https://github.com/fribidi/fribidi.git --depth=1 -b v1.0.17
 fi
 
 API_LEVEL=21
